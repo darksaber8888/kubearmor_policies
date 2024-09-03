@@ -1,0 +1,14 @@
+apiVersion: security.kubearmor.com/v1
+kind: KubeArmorPolicy
+metadata:
+  name: audit-etc-access
+spec:
+  selector:
+    matchLabels:
+      app: timetable-app
+  file:
+    matchDirectories:
+    - dir: /etc/shadow/
+      recursive: true
+  action:
+    Audit
